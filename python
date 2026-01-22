@@ -1,0 +1,30 @@
+
+graph = {
+    'S': ['A', 'B'],
+    'A': ['C', 'D'],
+    'B': ['E', 'F'],
+    'C': [], 'D': [], 'E': [], 'F': []
+}
+def dls(node, goal, limit):
+    print(f"Checking {node} at limit {limit}")
+    
+    if node == goal:
+        return True
+    
+    if limit <= 0:
+        return False 
+
+    for child in graph[node]:
+        if dls(child, goal, limit - 1):
+            return True
+            
+    return False
+start = 'S'
+target = 'C'
+limit = 2
+
+print(f"--- Starting DLS with Limit {limit} ---")
+if dls(start, target, limit):
+    print("Result: FOUND")
+else:
+    print("Result: NOT FOUND (Limit reached)")
